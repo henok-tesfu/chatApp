@@ -7,6 +7,7 @@ use App\Models\ChatRoom;
 
 
 
+
 class ChatRoomSeeder extends Seeder
 {
     /**
