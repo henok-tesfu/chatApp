@@ -14,7 +14,7 @@
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-          <message-container :messages="messages" />
+          <message-container :messages="messages" :user="user" />
           <input-message :room="currentRoom" v-on:messagesent="getMessages()" />
         </div>
       </div>
@@ -28,6 +28,7 @@ import MessageContainer from "./messageContainer.vue";
 import InputMessage from "./inputMessage.vue";
 import ChatRoomSelection from "./chatRoomSelection.vue";
 export default {
+  props: ["user"],
   components: {
     AppLayout,
     MessageContainer,
@@ -47,6 +48,7 @@ export default {
   watch: {
     currentRoom(val, oldVal) {
       if (oldVal.id) {
+        console.log(oldval);
         this.disconnect(oldVal);
       }
       this.connect();
@@ -81,7 +83,7 @@ export default {
     },
     setRoom(room) {
       this.currentRoom = room;
-      console.log(room);
+      // console.log(room);
       // this.getMessages();
     },
     getMessages() {
@@ -94,6 +96,10 @@ export default {
           console.log(error);
         });
     },
+  },
+  mounted() {
+    // console.log("mounted user");
+    // console.log(this.user);
   },
 };
 </script>
