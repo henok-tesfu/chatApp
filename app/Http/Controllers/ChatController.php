@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ChatRoom;
 use App\Models\ChatMessage;
 use App\Models\User;
+use App\Events\NewChatMessage;
 use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
@@ -30,6 +31,7 @@ class ChatController extends Controller
               $newMessages->save();
              }
         //   auth()->user()->message()->create($newValidData);
+        broadcast(new NewChatMessage($newMessages))->toOthers();
 
         return $newMessages;
 
