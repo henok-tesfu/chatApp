@@ -21,10 +21,15 @@ class NewChatMessage implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(ChatMessage $chatMessage )
+    public function __construct(ChatMessage $newMessages )
     {
-        $this->chatMessage = $chatMessage;
+        
+        $this->chatMessage = $newMessages;
     }
+
+    public function broadcastAs() {
+        return '.message.new';
+   }
 
     /**
      * Get the channels the event should broadcast on.
@@ -33,6 +38,7 @@ class NewChatMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        // dd("the pusher that is not working inside brodcust in the channale");
         return new PrivateChannel('chat.'.$this->chatMessage->chat_room_id);
     }
 }

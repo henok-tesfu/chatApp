@@ -32,7 +32,7 @@ class ChatController extends Controller
              }
         //   auth()->user()->message()->create($newValidData);
         broadcast(new NewChatMessage($newMessages))->toOthers();
-
+           
         return $newMessages;
 
          

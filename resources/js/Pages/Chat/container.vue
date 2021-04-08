@@ -48,7 +48,7 @@ export default {
   watch: {
     currentRoom(val, oldVal) {
       if (oldVal.id) {
-        console.log(oldval);
+        console.log("detaching");
         this.disconnect(oldVal);
       }
       this.connect();
@@ -58,6 +58,7 @@ export default {
     connect() {
       if (this.currentRoom.id) {
         let vm = this;
+        console.log("before connect");
         this.getMessages();
         window.Echo.private("chat." + this.currentRoom.id).listen(
           ".message.new",
@@ -68,6 +69,7 @@ export default {
       }
     },
     disconnect(room) {
+      console.log("here but not ditaching");
       window.Echo.leave("chat." + room.id);
     },
     getRooms() {
@@ -83,8 +85,6 @@ export default {
     },
     setRoom(room) {
       this.currentRoom = room;
-      // console.log(room);
-      // this.getMessages();
     },
     getMessages() {
       axios

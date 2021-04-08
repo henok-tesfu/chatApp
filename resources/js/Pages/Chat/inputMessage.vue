@@ -3,7 +3,7 @@
     <div class="w-full grid grid-cols-6">
       <input
         v-model="message"
-        @click="sendMessage"
+        @keydown.enter="sendMessage"
         placeholder="something....."
         type="text"
         class="col-span-6 outline-none rounded-tl-2xl rounded-bl-2xl"
@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     sendMessage() {
-      console.log("here going to send message");
       if (this.message == "") return;
       axios
         .post("/chat/room/" + this.room.id + "/message", {
