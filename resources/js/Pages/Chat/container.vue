@@ -70,7 +70,7 @@ export default {
     },
     disconnect(room) {
       console.log("here but not ditaching");
-      window.Echo.leave("chat." + room.id);
+      window.Echo.stopListening("chat." + room.id);
     },
     getRooms() {
       axios

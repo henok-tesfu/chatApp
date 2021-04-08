@@ -28,7 +28,7 @@ class NewChatMessage implements ShouldBroadcast
     }
 
     public function broadcastAs() {
-        return '.message.new';
+        return 'message.new';
    }
 
     /**
@@ -40,5 +40,6 @@ class NewChatMessage implements ShouldBroadcast
     {
         // dd("the pusher that is not working inside brodcust in the channale");
         return new PrivateChannel('chat.'.$this->chatMessage->chat_room_id);
+        // return new Channel('chat.'.$this->chatMessage->chat_room_id);
     }
 }
